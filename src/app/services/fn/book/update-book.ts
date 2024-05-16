@@ -6,17 +6,18 @@ import { filter, map } from 'rxjs/operators';
 import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
+import { BookRequest } from '../../models/book-request';
 
-export interface UpdateShareableStatus$Params {
+export interface UpdateBook$Params {
   'book-id': number;
-  status: boolean;
+      body: BookRequest
 }
 
-export function updateShareableStatus(http: HttpClient, rootUrl: string, params: UpdateShareableStatus$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
-  const rb = new RequestBuilder(rootUrl, updateShareableStatus.PATH, 'patch');
+export function updateBook(http: HttpClient, rootUrl: string, params: UpdateBook$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+  const rb = new RequestBuilder(rootUrl, updateBook.PATH, 'put');
   if (params) {
     rb.path('book-id', params['book-id'], {});
-    rb.path('status', params.status, {});
+    rb.body(params.body, 'application/json');
   }
 
   return http.request(
@@ -29,4 +30,4 @@ export function updateShareableStatus(http: HttpClient, rootUrl: string, params:
   );
 }
 
-updateShareableStatus.PATH = '/book/shareable/{book-id}/{status}';
+updateBook.PATH = '/book/{book-id}';

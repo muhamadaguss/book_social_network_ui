@@ -1,0 +1,150 @@
+<div class="container-fluid">
+  <!-- Row -->
+  <div class="row">
+    <div class="col-12">
+      <!-- start Project Assinging -->
+      <div class="card w-100 border position-relative overflow-hidden">
+        <div class="card-header mat-primary mat-toolbar">
+          <h3 class="card-title text-white m-t-16">Edit Book</h3>
+        </div>
+        <form class="form-horizontal r-separator m-t-16">
+          <div class="card-body text-bg-light">
+            <div class="form-group mb-0">
+              <div class="row align-items-center">
+                <label for="inputText4" class="col-3 text-end col-form-label"
+                  >Title</label
+                >
+                <div class="col-9 border-start pb-2 pt-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputText4"
+                    placeholder="Your Book Title"
+                    control-id="ControlID-5"
+                    [(ngModel)]="bookResponse.title"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-0">
+              <div class="row align-items-center">
+                <label for="inputText4" class="col-3 text-end col-form-label"
+                  >Author Name</label
+                >
+                <div class="col-9 border-start pb-2 pt-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputText4"
+                    placeholder="Your Book Author Name"
+                    control-id="ControlID-5"
+                    [(ngModel)]="bookResponse.authorName"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-0">
+              <div class="row align-items-center">
+                <label for="inputText4" class="col-3 text-end col-form-label"
+                  >ISBN</label
+                >
+                <div class="col-9 border-start pb-2 pt-2">
+                  <input
+                    type="text"
+                    class="form-control"
+                    id="inputText4"
+                    placeholder="Your Book ISBN"
+                    control-id="ControlID-5"
+                    [(ngModel)]="bookResponse.isbn"
+                    [ngModelOptions]="{ standalone: true }"
+                  />
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-0">
+              <div class="row align-items-center">
+                <label for="inputText4" class="col-3 text-end col-form-label"
+                  >Synopsis</label
+                >
+                <div class="col-9 border-start pb-2 pt-2">
+                  <textarea
+                    class="form-control"
+                    rows="3"
+                    placeholder="Your Book Synopsis"
+                    control-id="ControlID-18"
+                    [(ngModel)]="bookResponse.synopsis"
+                    [ngModelOptions]="{ standalone: true }"
+                  ></textarea>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-0">
+              <div class="row align-items-center">
+                <label for="inputSelect1" class="col-3 text-end col-form-label"
+                  >Shareable</label
+                >
+                <div class="col-9 border-start pb-2 pt-2">
+                  <select
+                    class="form-select"
+                    id="inputSelect1"
+                    control-id="ControlID-6"
+                    [(ngModel)]="bookResponse.shareable"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <option value="">Choose Your Option</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+            <div class="form-group mb-0">
+              <div class="row align-items-center">
+                <label for="inputSelect2" class="col-3 text-end col-form-label"
+                  >Archived</label
+                >
+                <div class="col-9 border-start pb-2 pt-2">
+                  <select
+                    class="form-select"
+                    id="inputSelect2"
+                    control-id="ControlID-7"
+                    [(ngModel)]="bookResponse.archived"
+                    [ngModelOptions]="{ standalone: true }"
+                  >
+                    <option value="">Choose Your Option</option>
+                    <option value="true">True</option>
+                    <option value="false">False</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="form-group mb-0 text-end">
+              <button
+                type="submit"
+                class="btn btn-primary"
+                control-id="ControlID-10"
+                (click)="onSave()"
+              >
+                Save
+              </button>
+              &nbsp;&nbsp;
+              <button
+                type="submit"
+                class="btn bg-danger-subtle text-danger ms-6"
+                control-id="ControlID-11"
+                (click)="back()"
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <!-- end Project Assinging -->
+    </div>
+  </div>
+</div>

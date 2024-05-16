@@ -24,6 +24,6 @@ export const navItems: NavItem[] = [
   {
     displayName: 'Borrowed Books',
     iconName: 'book-download',
-    route: '/borrowed-books',
+    route: '/borrowed',
   },
 ];

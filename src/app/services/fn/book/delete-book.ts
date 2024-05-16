@@ -7,16 +7,14 @@ import { StrictHttpResponse } from '../../strict-http-response';
 import { RequestBuilder } from '../../request-builder';
 
 
-export interface UpdateShareableStatus$Params {
+export interface DeleteBook$Params {
   'book-id': number;
-  status: boolean;
 }
 
-export function updateShareableStatus(http: HttpClient, rootUrl: string, params: UpdateShareableStatus$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
-  const rb = new RequestBuilder(rootUrl, updateShareableStatus.PATH, 'patch');
+export function deleteBook(http: HttpClient, rootUrl: string, params: DeleteBook$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+  const rb = new RequestBuilder(rootUrl, deleteBook.PATH, 'delete');
   if (params) {
     rb.path('book-id', params['book-id'], {});
-    rb.path('status', params.status, {});
   }
 
   return http.request(
@@ -29,4 +27,4 @@ export function updateShareableStatus(http: HttpClient, rootUrl: string, params:
   );
 }
 
-updateShareableStatus.PATH = '/book/shareable/{book-id}/{status}';
+deleteBook.PATH = '/book/{book-id}';

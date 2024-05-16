@@ -14,6 +14,8 @@ import { ApproveReturnBorrowBook$Params } from '../fn/book/approve-return-borrow
 import { BookResponse } from '../models/book-response';
 import { borrowBook } from '../fn/book/borrow-book';
 import { BorrowBook$Params } from '../fn/book/borrow-book';
+import { deleteBook } from '../fn/book/delete-book';
+import { DeleteBook$Params } from '../fn/book/delete-book';
 import { findAllBooks } from '../fn/book/find-all-books';
 import { FindAllBooks$Params } from '../fn/book/find-all-books';
 import { findAllBooksByOwner } from '../fn/book/find-all-books-by-owner';
@@ -32,6 +34,8 @@ import { saveBook } from '../fn/book/save-book';
 import { SaveBook$Params } from '../fn/book/save-book';
 import { updateArchivedStatus } from '../fn/book/update-archived-status';
 import { UpdateArchivedStatus$Params } from '../fn/book/update-archived-status';
+import { updateBook } from '../fn/book/update-book';
+import { UpdateBook$Params } from '../fn/book/update-book';
 import { updateShareableStatus } from '../fn/book/update-shareable-status';
 import { UpdateShareableStatus$Params } from '../fn/book/update-shareable-status';
 import { uploadBookCoverPicture } from '../fn/book/upload-book-cover-picture';
@@ -41,6 +45,81 @@ import { UploadBookCoverPicture$Params } from '../fn/book/upload-book-cover-pict
 export class BookService extends BaseService {
   constructor(config: ApiConfiguration, http: HttpClient) {
     super(config, http);
+  }
+
+  /** Path part for operation `findBookById()` */
+  static readonly FindBookByIdPath = '/book/{book-id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `findBookById()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findBookById$Response(params: FindBookById$Params, context?: HttpContext): Observable<StrictHttpResponse<BookResponse>> {
+    return findBookById(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `findBookById$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  findBookById(params: FindBookById$Params, context?: HttpContext): Observable<BookResponse> {
+    return this.findBookById$Response(params, context).pipe(
+      map((r: StrictHttpResponse<BookResponse>): BookResponse => r.body)
+    );
+  }
+
+  /** Path part for operation `updateBook()` */
+  static readonly UpdateBookPath = '/book/{book-id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `updateBook()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updateBook$Response(params: UpdateBook$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+    return updateBook(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `updateBook$Response()` instead.
+   *
+   * This method sends `application/json` and handles request body of type `application/json`.
+   */
+  updateBook(params: UpdateBook$Params, context?: HttpContext): Observable<number> {
+    return this.updateBook$Response(params, context).pipe(
+      map((r: StrictHttpResponse<number>): number => r.body)
+    );
+  }
+
+  /** Path part for operation `deleteBook()` */
+  static readonly DeleteBookPath = '/book/{book-id}';
+
+  /**
+   * This method provides access to the full `HttpResponse`, allowing access to response headers.
+   * To access only the response body, use `deleteBook()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteBook$Response(params: DeleteBook$Params, context?: HttpContext): Observable<StrictHttpResponse<number>> {
+    return deleteBook(this.http, this.rootUrl, params, context);
+  }
+
+  /**
+   * This method provides access only to the response body.
+   * To access the full response (for headers, for example), `deleteBook$Response()` instead.
+   *
+   * This method doesn't expect any request body.
+   */
+  deleteBook(params: DeleteBook$Params, context?: HttpContext): Observable<number> {
+    return this.deleteBook$Response(params, context).pipe(
+      map((r: StrictHttpResponse<number>): number => r.body)
+    );
   }
 
   /** Path part for operation `findAllBooks()` */
@@ -148,7 +227,7 @@ export class BookService extends BaseService {
   }
 
   /** Path part for operation `updateShareableStatus()` */
-  static readonly UpdateShareableStatusPath = '/book/shareable/{book-id}';
+  static readonly UpdateShareableStatusPath = '/book/shareable/{book-id}/{status}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -223,7 +302,7 @@ export class BookService extends BaseService {
   }
 
   /** Path part for operation `updateArchivedStatus()` */
-  static readonly UpdateArchivedStatusPath = '/book/archived/{book-id}';
+  static readonly UpdateArchivedStatusPath = '/book/archived/{book-id}/{status}';
 
   /**
    * This method provides access to the full `HttpResponse`, allowing access to response headers.
@@ -244,31 +323,6 @@ export class BookService extends BaseService {
   updateArchivedStatus(params: UpdateArchivedStatus$Params, context?: HttpContext): Observable<number> {
     return this.updateArchivedStatus$Response(params, context).pipe(
       map((r: StrictHttpResponse<number>): number => r.body)
-    );
-  }
-
-  /** Path part for operation `findBookById()` */
-  static readonly FindBookByIdPath = '/book/{book-id}';
-
-  /**
-   * This method provides access to the full `HttpResponse`, allowing access to response headers.
-   * To access only the response body, use `findBookById()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  findBookById$Response(params: FindBookById$Params, context?: HttpContext): Observable<StrictHttpResponse<BookResponse>> {
-    return findBookById(this.http, this.rootUrl, params, context);
-  }
-
-  /**
-   * This method provides access only to the response body.
-   * To access the full response (for headers, for example), `findBookById$Response()` instead.
-   *
-   * This method doesn't expect any request body.
-   */
-  findBookById(params: FindBookById$Params, context?: HttpContext): Observable<BookResponse> {
-    return this.findBookById$Response(params, context).pipe(
-      map((r: StrictHttpResponse<BookResponse>): BookResponse => r.body)
     );
   }
 

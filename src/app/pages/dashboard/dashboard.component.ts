@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation, ViewChild } from '@angular/core';
+import { Component, ViewEncapsulation, ViewChild, OnInit } from '@angular/core';
 import {
   ApexChart,
   ChartComponent,
@@ -15,6 +15,7 @@ import {
   ApexMarkers,
   ApexResponsive,
 } from 'ng-apexcharts';
+import { BookService } from 'src/app/services/services';
 
 interface month {
   value: string;
@@ -131,7 +132,7 @@ const ELEMENT_DATA: productsData[] = [
   encapsulation: ViewEncapsulation.None,
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
   // @ViewChild('chart') chart: ChartComponent = Object.create(null);
 
   public salesOverviewChart!: Partial<salesOverviewChart> | any;
@@ -222,7 +223,7 @@ export class DashboardComponent {
     },
   ];
 
-  constructor() {
+  constructor(private bookService: BookService) {
     // sales overview chart
     this.salesOverviewChart = {
       series: [
@@ -401,5 +402,13 @@ export class DashboardComponent {
         },
       },
     };
+  }
+  ngOnInit(): void {
+    this.bookService.findAllBooks().subscribe({
+      next: (res) => {
+        console.log(res);
+      },
+      error: (err) => {},
+    });
   }
 }

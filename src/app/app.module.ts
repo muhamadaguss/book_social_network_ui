@@ -25,10 +25,12 @@ import { ToastrModule } from 'ngx-toastr';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { HttpTokenInterceptor } from './services/interceptor/http-token.interceptor';
-import { BookListComponent } from './pages/book-list/book-list.component';
 import { NgOptimizedImage } from '@angular/common';
 import { DataTableModule } from '@bhplugin/ng-datatable';
+import { BookModule } from './module/book/book.module';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { ImageComponent } from './components/image/image.component';
+import { BorrowedModule } from './module/borrowed/borrowed.module';
 
 @NgModule({
   declarations: [
@@ -43,8 +45,6 @@ import { ImageComponent } from './components/image/image.component';
     SidebarComponent,
     AppNavItemComponent,
     DashboardComponent,
-    BookListComponent,
-    ImageComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,13 +55,16 @@ import { ImageComponent } from './components/image/image.component';
     HttpClientModule,
     CodeInputModule,
     NgApexchartsModule,
-    DataTableModule,
+    BookModule,
+    BorrowedModule,
     TablerIconsModule.pick(TablerIcons),
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-top-right',
       preventDuplicates: true,
     }),
+    SweetAlert2Module,
+    SweetAlert2Module.forRoot(),
     NgOptimizedImage,
   ],
   exports: [TablerIconsModule],

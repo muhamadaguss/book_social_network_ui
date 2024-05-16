@@ -1,0 +1,95 @@
+<div class="advanced-table whitespace-nowrap alt-pagination sticky-table">
+  <div class="custom-container">
+    <mat-form-field appearance="outline" class="custom-input" color="primary">
+      <input
+        matInput
+        type="email"
+        [(ngModel)]="params.search"
+        placeholder="Search ...."
+      />
+    </mat-form-field>
+  </div>
+
+  <ng-datatable
+    [rows]="rows"
+    [columns]="cols"
+    [loading]="loading"
+    [totalRows]="total_rows"
+    [isServerMode]="true"
+    [pageSize]="params.size"
+    [sortable]="true"
+    [sortColumn]="params.sort_column"
+    [sortDirection]="params.sort_direction"
+    firstArrow="First"
+    lastArrow="Last"
+    previousArrow="Prev"
+    nextArrow="Next"
+    [showNumbersCount]="3"
+    skin="bh-table-striped bh-table-hover bh-table-bordered bh-table-compact"
+    [search]="params.search"
+    (changeServer)="changeServer($event)"
+  >
+    <ng-template slot="id" let-value="data">
+      <strong class="text-info">{{ value.id }}</strong>
+    </ng-template>
+    <ng-template slot="title" let-value="data">
+      <div class="flex items-center gap-2">
+        <div class="font-medium">
+          {{ value.title }}
+        </div>
+      </div>
+    </ng-template>
+    <ng-template slot="bookCover" let-value="data">
+      <app-image
+        [imageId]="value.bookId"
+        [imageName]="value.bookCover"
+      ></app-image>
+    </ng-template>
+    <ng-template slot="authorName" let-value="data">
+      <div class="flex items-center gap-2">
+        <div class="font-medium">
+          {{ value.authorName }}
+        </div>
+      </div>
+    </ng-template>
+    <ng-template slot="rate" let-value="data">
+      <div class="m-l-auto d-flex gap-4">
+        <span
+          ><i-tabler
+            name="star"
+            class="fill-warning icon-18"
+            *ngFor="let i of getRandomArray(value.rate)"
+          ></i-tabler
+        ></span>
+      </div>
+    </ng-template>
+    <ng-template slot="returned" let-value="data">
+      <span class="badge" [ngClass]="value.returnedColor">{{
+        value.returned
+      }}</span>
+    </ng-template>
+    <ng-template slot="returnApproved" let-value="data">
+      <span class="badge" [ngClass]="value.returnApprovedColor">{{
+        value.returnApproved
+      }}</span>
+    </ng-template>
+    <ng-template slot="actions" let-value="data">
+      <div class="flex gap-4">
+        <button
+          type="button"
+          class="btn btn-success py-1 button-margin"
+          (click)="viewBook(value)"
+        >
+          View
+        </button>
+        <button
+          type="button"
+          class="btn btn-danger py-1"
+          (click)="deleteBook(value)"
+        >
+          Delete
+        </button>
+      </div>
+    </ng-template>
+  </ng-datatable>
+</div>

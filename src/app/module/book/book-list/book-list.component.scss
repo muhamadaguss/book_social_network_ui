@@ -1,0 +1,28 @@
+.advanced-table {
+  overflow-x: auto; /* Menambahkan scroll horizontal jika konten melebihi lebar container */
+  -webkit-overflow-scrolling: touch; /* Memperbaiki pengalaman scroll di iOS */
+}
+.button-margin {
+  margin-right: 10px; /* Atau nilai lain sesuai dengan kebutuhan */
+}
+.ellipsis {
+  overflow: hidden; /* Pastikan konten yang berlebih tersembunyi */
+  white-space: nowrap; /* Tidak membiarkan teks berpindah ke baris baru */
+  text-overflow: ellipsis; /* Menambahkan titik-titik di akhir jika teks terpotong */
+  width: 50%; /* Atur lebar maksimal elemen, sesuaikan sesuai kebutuhan */
+}
+/* alt-pagination */
+.alt-pagination .bh-pagination .bh-page-item {
+  width: max-content !important;
+  min-width: 32px;
+  border-radius: 0 !important;
+}
+
+.custom-container {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 1rem;
+}
+.custom-input {
+  width: 30%;
+}

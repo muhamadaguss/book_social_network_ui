@@ -15,7 +15,6 @@ export class ImageComponent implements OnInit {
   constructor(private imageService: FileService) {}
 
   ngOnInit(): void {
-    console.log(this.imageId, this.imageName);
     this.imageService
       .getImages({
         'book-id': this.imageId!,
@@ -23,7 +22,6 @@ export class ImageComponent implements OnInit {
       })
       .subscribe({
         next: (res: any) => {
-          console.log(res);
           this.imageUrl = URL.createObjectURL(res);
         },
         error: (err) => {

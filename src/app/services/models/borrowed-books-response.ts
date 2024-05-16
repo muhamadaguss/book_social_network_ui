@@ -2,6 +2,8 @@
 /* eslint-disable */
 export interface BorrowedBooksResponse {
   authorName?: string;
+  bookCover?: string;
+  bookId?: number;
   id?: number;
   isbn?: string;
   rate?: number;

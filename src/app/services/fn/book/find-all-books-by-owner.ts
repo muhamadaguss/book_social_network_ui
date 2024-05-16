@@ -11,6 +11,9 @@ import { PageResponseBookResponse } from '../../models/page-response-book-respon
 export interface FindAllBooksByOwner$Params {
   page?: number;
   size?: number;
+  sort_column?: string;
+  sort_direction?: string;
+  search?: string;
 }
 
 export function findAllBooksByOwner(http: HttpClient, rootUrl: string, params?: FindAllBooksByOwner$Params, context?: HttpContext): Observable<StrictHttpResponse<PageResponseBookResponse>> {
@@ -18,6 +21,9 @@ export function findAllBooksByOwner(http: HttpClient, rootUrl: string, params?: 
   if (params) {
     rb.query('page', params.page, {});
     rb.query('size', params.size, {});
+    rb.query('sort_column', params.sort_column, {});
+    rb.query('sort_direction', params.sort_direction, {});
+    rb.query('search', params.search, {});
   }
 
   return http.request(

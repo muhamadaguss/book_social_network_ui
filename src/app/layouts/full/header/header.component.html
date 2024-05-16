@@ -8,12 +8,12 @@
   <!-- --------------------------------------------------------------- -->
   <!-- Notification Dropdown -->
   <!-- --------------------------------------------------------------- -->
-<!--  <button mat-icon-button aria-label="Notifications">-->
-<!--    <i-tabler-->
-<!--      class="d-flex"-->
-<!--      name="menu-2"-->
-<!--    ></i-tabler>-->
-<!--  </button>-->
+  <!--  <button mat-icon-button aria-label="Notifications">-->
+  <!--    <i-tabler-->
+  <!--      class="d-flex"-->
+  <!--      name="menu-2"-->
+  <!--    ></i-tabler>-->
+  <!--  </button>-->
   <span class="flex-1-auto"></span>
 
   <!-- --------------------------------------------------------------- -->
@@ -27,7 +27,10 @@
     <img
       ngSrc="/assets/images/profile/user-1.jpg"
       class="rounded-circle object-cover icon-35 profile-dd"
-      alt="" height="500" width="500"/>
+      alt=""
+      height="500"
+      width="500"
+    />
   </button>
   <mat-menu #profilemenu="matMenu" class="topbar-dd cardWithShadow">
     <button mat-menu-item>
@@ -50,11 +53,7 @@
     </button>
 
     <div class="p-x-12 m-t-12">
-      <a
-        [routerLink]="['/authentication/login']"
-        mat-stroked-button
-        color="primary"
-        class="w-100"
+      <a (click)="logout()" mat-stroked-button color="primary" class="w-100"
         >Logout</a
       >
     </div>
